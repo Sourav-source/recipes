@@ -28,12 +28,12 @@ router.put("/", async (req, res) => {
   // console.log(req.body,"LLLLLLL");
   try {
     const recipe = await RecipeModel.findById(req.body.recipeID);
-    console.log(recipe,"recipe")
+    // console.log(recipe, "recipe");
     const user = await UserModel.findById(req.body.userID);
-    console.log(user,"user")
-    // user.savedRecipes.push(recipe);
-    user.savedRecipes.push(recipe._id);
-   const newUser= await user.save();
+    // console.log(user, "user");
+    user.savedRecipes.push(recipe);
+    // user.savedRecipes.push(recipe._id);
+    const newUser = await user.save();
     res.json({ savedRecipes: newUser.savedRecipes });
   } catch (error) {
     res.json(error);
